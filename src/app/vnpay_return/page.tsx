@@ -1,5 +1,5 @@
 import React from "react";
-import VnpayReturn from "../test/update.vnpay";
+import VnpayReturn from "../vnpay/update.vnpay";
 
 async function UpdateTestPage() {
   return (
