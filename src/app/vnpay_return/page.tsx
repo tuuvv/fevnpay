@@ -1,12 +1,14 @@
-import React from "react";
+"use client";
+import React, { Suspense } from "react";
 import VnpayReturn from "../vnpay/update.vnpay";
 
-async function UpdateTestPage() {
+export const dynamic = "force-dynamic"; // buộc không prerender
+
+export default function UpdateTestPage() {
   return (
-    <div>
-      <VnpayReturn  />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <VnpayReturn />
+    </Suspense>
   );
 }
 
-export default UpdateTestPage;
