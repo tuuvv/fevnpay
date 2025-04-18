@@ -22,5 +22,5 @@ jobs:
             git checkout staging
             git pull origin staging
             yarn
-            npm run build
+            yarn build
             pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
