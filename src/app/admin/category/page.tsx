@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, message } from "antd";
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/api/v1/categories";
+const API_URL = "http://api.tuudeptrai.site/api/v1/categories";
 
 interface Category {
   _id: string;

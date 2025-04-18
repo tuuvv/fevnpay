@@ -13,8 +13,8 @@ import {
 } from "antd";
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/api/v1/products";
-const CATEGORY_API_URL = "http://localhost:8081/api/v1/categories";
+const API_URL = "http://api.tuudeptrai.site/api/v1/products";
+const CATEGORY_API_URL = "http://api.tuudeptrai.site/api/v1/categories";
 
 interface Product {
   _id: string;
