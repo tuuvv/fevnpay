@@ -1,0 +1,42 @@
+name: 🚀 Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy FE via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "🔄 Deploying Frontend..."
+
+            # Load nvm to ensure yarn & pm2 work
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            cd /www/wwwroot/fevnpay
+
+            echo "📦 Pulling latest code"
+            git fetch origin main
+            git checkout main
+            git pull origin main
+
+            echo "📦 Installing dependencies..."
+            yarn
+
+            echo "🛠 Building Next.js app..."
+            yarn build
+
+            echo "🚀 Restarting with PM2..."
+            pm2 reload ecosystem.config.js 
