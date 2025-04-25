@@ -18,7 +18,7 @@ export default function VnpayReturn(s:any) {
   const searchParams = useSearchParams();
   const [orderDetails, setOrderDetails] = useState<any>();
   const [loading, setLoading] = useState(true);
-  const API_URL = "http://api.tuudeptrai.site/api/v1";
+  const API_URL = "http://api.staging.tuudeptrai.site/api/v1";
   const verifyOrder = async () => {
     try {
       if (searchParams) {
