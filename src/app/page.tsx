@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../app/slices/userSlice";
 import axios from "axios";
 
-const API_URL = "http://api.staging.tuudeptrai.site/api/v1/products";
+const API_URL = "https://api.staging.tuudeptrai.site/api/v1/products";
 
 interface Product {
   _id: string;
