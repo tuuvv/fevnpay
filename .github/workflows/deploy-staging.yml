@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /www/wwwroot/fevnpay
+            cd /www/wwwroot/staging/fevnpay
             git fetch origin staging
             git checkout staging
             git pull origin staging
