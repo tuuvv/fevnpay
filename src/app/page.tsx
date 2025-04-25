@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <h1>Trang web thương mại điên tử</h1>
+      <h1>Trang web ok nè</h1>
       {loading ? (
         <Spin size="large" />
       ) : (
