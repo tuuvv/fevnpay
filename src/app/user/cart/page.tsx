@@ -5,7 +5,7 @@ import { removeFromCart, clearCart } from "../../slices/userSlice";
 import { Button, Table, message, Form, Input } from "antd";
 import axios from "axios";
 
-const API_URL = "http://api.tuudeptrai.site/api/v1";
+const API_URL = "https://api.tuudeptrai.site/api/v1";
 
 const CartPage: React.FC = () => {
   const cart = useSelector((state: RootState) => state.user.cart);
