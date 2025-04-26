@@ -6,7 +6,7 @@ module.exports = {
       args: 'start -p 3100',
       cwd: '/www/wwwroot/staging/fevnpay',
       env: {
-        NODE_ENV: 'staging'
+        NODE_ENV: 'production'
       }
     }
   ]
