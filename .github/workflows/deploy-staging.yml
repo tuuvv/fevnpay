@@ -17,9 +17,11 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_AWS  }} 
           key: ${{ secrets.SSH_PRIVATE_KEY_AWS  }} 
           script: |
+
+            sudo su
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            sudo su
+         
             cd /www/wwwroot/staging/fevnpay
             git fetch origin staging
             git checkout staging
