@@ -10,22 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Deploy FE via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.SSH_HOST_AWS }} 
-          username: ${{ secrets.SSH_USERNAME_AWS  }} 
-          key: ${{ secrets.SSH_PRIVATE_KEY_AWS  }} 
+          host: ${{ secrets.SSH_HOST_AWS }}
+          username: ${{ secrets.SSH_USERNAME_AWS }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_AWS }}
           script: |
-
-            sudo su
-            export NVM_DIR="$HOME/.nvm"
+            # Load NVM properly (without sudo su)
+            export NVM_DIR="/home/${{ secrets.SSH_USERNAME_AWS }}/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-         
+
             cd /www/wwwroot/staging/fevnpay
+
+            # Fix git permission (only needed first time)
+            sudo chown -R $USER:$USER .git
+
+            # Pull latest code
             git fetch origin staging
             git checkout staging
             git pull origin staging
-            yarn
+
+            # Install deps and build
+            yarn install --frozen-lockfile
             yarn build
+
+            # Reload PM2
             pm2 reload ecosystem.config.js || pm2 start ecosystem.config.js
